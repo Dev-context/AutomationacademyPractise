@@ -1,0 +1,5 @@
+{
+  "emailId": "#userEmail",
+  "passwordId": "#userPassword",
+  "loginSubmit": "#login"
+}
