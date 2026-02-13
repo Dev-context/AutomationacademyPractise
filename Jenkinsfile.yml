@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment{
+        USEREMAIL = credentials('USEREMAIL')
+        USERPASSWORD = credentials('USERPASSWORD')
+    }
+
     stages {
         stage('Dependencies') {
             steps {
@@ -20,11 +25,10 @@ pipeline {
                 }
             }
         }
-          stage('Generente test Reportt') {
+
+        stage('Generente test Report') {
             steps {
                 bat 'npm install'
-                // Removed sudo/dpkg as they won't work on Windows.
-                // Assuming Allure is already installed on the Windows agent.
                 bat 'npm run allure-generate' 
                }
             }
