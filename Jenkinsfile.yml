@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Generente test Report'){
+            step{
+
+                bat 'allure-generate'
+            }
+        }
     }
 
     post {
