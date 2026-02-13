@@ -1,7 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3624","@CT002 UnSuccessFully Logged in","chromium","2026-02-12","passed","2026-02-12","Login Suite","login.spec.ts","",""
-"","6003","@CT002 UnSuccessFully Logged in","firefox","2026-02-12","passed","2026-02-12","Login Suite","login.spec.ts","",""
-"","8363","@CT001 Successfully logged in","firefox","2026-02-12","passed","2026-02-12","Login Suite","login.spec.ts","",""
-"","4202","@CT001 Successfully logged in","chromium","2026-02-12","passed","2026-02-12","Login Suite","login.spec.ts","",""
-"","5250","@CT002 UnSuccessFully Logged in","webkit","2026-02-12","passed","2026-02-12","Login Suite","login.spec.ts","",""
-"","5311","@CT001 Successfully logged in","webkit","2026-02-12","failed","2026-02-12","Login Suite","login.spec.ts","",""
