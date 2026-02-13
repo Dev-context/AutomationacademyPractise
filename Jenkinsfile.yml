@@ -21,12 +21,12 @@ pipeline {
             }
         }
           stage('Generente test Reportt') {
-                steps {
+            steps {
                 bat 'npm install'
                 // Removed sudo/dpkg as they won't work on Windows.
                 // Assuming Allure is already installed on the Windows agent.
                 bat 'npm run allure-generate' 
-            }
+               }
             }
         }
     }
@@ -36,4 +36,3 @@ pipeline {
             allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
         }
     }
-}
