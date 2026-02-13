@@ -1,7 +1,7 @@
 import test, { Locator, Page, expect } from "@playwright/test";
 import loginLocators from "./locators.json";
 
-export default class Login {
+export default class LoginPage {
   private readonly page: Page;
   private readonly userEmail: Locator;
   private readonly password: Locator;

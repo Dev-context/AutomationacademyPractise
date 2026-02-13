@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
-import Login from "../model/login/loginPage";
 import { ENV } from "../config/env";
+import LoginPage from "../model/login/LoginPage";
 
-let loginPage: Login;
+let loginPage: LoginPage;
 
 test.describe("Login Suite", () => {
   test.beforeEach(async ({ page }) => {
-    loginPage = new Login(page);
+    loginPage = new LoginPage(page);
   });
   test("@CT001 Successfully logged in", async ({ page }) => {
     await loginPage.goTo();
