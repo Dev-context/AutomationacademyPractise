@@ -10,16 +10,12 @@ pipeline {
         stage('Dependencies') {
             steps {
                 bat 'npm install'
-                // Removed sudo/dpkg as they won't work on Windows.
-                // Assuming Allure is already installed on the Windows agent.
                 bat 'allure --version' 
             }
         }
 
         stage('Test') {
             steps {
-                // Changed %script% to 'test' (or whatever your package.json script is)
-                // Added catchError so the pipeline continues to the Allure report even if tests fail
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     bat 'npm run test'
                 }
@@ -28,7 +24,6 @@ pipeline {
 
         stage('Generente test Report') {
             steps {
-                bat 'npm install'
                 bat 'npm run allure-generate' 
                }
             }

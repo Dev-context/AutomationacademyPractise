@@ -36,7 +36,9 @@ export default defineConfig({
     baseURL: "https://rahulshettyacademy.com/client/#/auth/login",
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
-    screenshot: "on",
+    screenshot: {
+      mode: "on",
+    },
     video: "retain-on-failure",
   },
 
