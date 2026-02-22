@@ -1,0 +1,6 @@
+{
+  "email": "input[type='email']",
+  "password": "input[type='password']",
+  "confirmPassword": "#confirmPassword",
+  "saveNewPassword": "input[type='submit']"
+}

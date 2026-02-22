@@ -33,7 +33,7 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: "https://rahulshettyacademy.com/client/#/auth/login",
+    baseURL: "https://rahulshettyacademy.com/",
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
     screenshot: {
