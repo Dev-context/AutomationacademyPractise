@@ -1,0 +1,7 @@
+services:
+  report-server:
+    image: nginx:alpine
+    ports:
+      - "5002:80"
+    volumes:
+      - ./playwright-report:/usr/share/nginx/html:ro 

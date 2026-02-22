@@ -10,19 +10,31 @@ export const testeBase = base.extend<{ log: Logger }>({
       const loggerFactory = new Logger(testInfo);
       const sessionLogs: string[] = [];
 
-      // Monitor de rede
+      // Monitor de rede e console
+      page.on("console", (msg) => {
+        if (msg.type() === "error") {
+          sessionLogs.push(`[${new Date().toLocaleTimeString()}] [CONSOLE] ${msg.text()}`);
+        }
+      });
+
       page.on("response", (res) => {
-        if (res.status() >= 400)
-          sessionLogs.push(`[NET] ${res.status()}: ${res.url()}`);
+        if (res.status() >= 400) {
+          sessionLogs.push(`[${new Date().toLocaleTimeString()}] [NET] ${res.status()}: ${res.url()}`);
+        }
+      });
+
+      page.on("requestfailed", (req) => {
+        sessionLogs.push(`[${new Date().toLocaleTimeString()}] [FAIL] ${req.failure()?.errorText}: ${req.url()}`);
       });
 
       try {
         // [2] EXECUÇÃO: Aqui o Playwright sai da fixture e roda o seu arquivo .spec.ts
+        console.log(`[2] EXECUÇÃO: Iniciando corpo do teste...`);
         await use(loggerFactory);
-        console.log("[3] SUCESSO: O código do teste terminou sem erros.");
+        console.log(`[3] SUCESSO: O corpo do teste foi concluído com exito.`);
       } catch (error) {
-        // [3] FALHA: Capturamos o erro manualmente porque o testInfo.errors só popula DEPOIS da fixture
-        console.log("[3] FALHA: O código do teste lançou um erro.");
+        // [3] FALHA: Capturamos o erro manualmente
+        console.log(`[3] FALHA: Capturado erro no catch da fixture: ${error instanceof Error ? error.message : String(error)}`);
         // O erro capturado aqui é o que o seu log precisa
         loggerFactory.writeLog({
           timestamp: new Date().toISOString(),
