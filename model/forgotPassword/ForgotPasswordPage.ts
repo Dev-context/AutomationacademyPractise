@@ -40,6 +40,6 @@ export default class ForgotPasswordPage {
   }
 
   async goTo() {
-    await this.page.goto("/password-new");
+    await this.page.goto("client/#/auth/password-new");
   }
 }
