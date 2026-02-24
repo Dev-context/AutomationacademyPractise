@@ -13,7 +13,7 @@ test.describe("Forgot Password Suite", () => {
     forgotPassword = await loginPage.clickForgotPasswordLink();
   });
 
-  test("Change user password with Successfully", async ({ page }) => {
+  test("@CT001 Change user password with Successfully", async ({ page }) => {
     const newPasswordResponse = page.waitForResponse(
       (response) =>
         response.url().includes("new-password") && response.request().method() === "POST"
@@ -23,7 +23,7 @@ test.describe("Forgot Password Suite", () => {
     const response = await newPasswordResponse;
     const result = await response.json();
     expect(result).toEqual(expect.objectContaining({ message: "Password Changed Successfully" }));
-    expect(page.url()).toMatch(/.*login.*/);
     await expect(page.getByText("Password Changed Successfully")).toBeVisible();
+    expect(page.url()).toMatch(/.*login.*/);
   });
 });
