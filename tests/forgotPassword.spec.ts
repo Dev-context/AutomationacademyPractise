@@ -24,6 +24,14 @@ test.describe("Forgot Password Suite", () => {
     const result = await response.json();
     expect(result).toEqual(expect.objectContaining({ message: "Password Changed Successfully" }));
     await expect(page.getByText("Password Changed Successfully")).toBeVisible();
-    expect(page.url()).toMatch(/.*login.*/);
+    expect(page.url()).toMatch(/.*login.*/g);
+  });
+
+  test("@CT002 No match password into forgotPassword page", async ({ page }) => {
+    await forgotPassword.resetPassword(ENV.USEREMAIL, ENV.USERPASSWORD, "123456789AsW");
+    await expect(
+      page.getByText("Password and Confirm Password must match with each other.")
+    ).toBeVisible();
+    expect(page.url()).toMatch(/.*password-new.*/g);
   });
 });
