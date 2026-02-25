@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import registerLocators from "./locators.json";
+import { userRegister } from "./interface";
 
 export default class RegisterPage {
   private readonly page: Page;
@@ -30,20 +31,32 @@ export default class RegisterPage {
     this.registerButton = page.locator(registerLocators.registerSubmit);
   }
 
-  async fillFirstName(firstName: string) {
-    await this.firstName.fill(firstName);
+  async fillFirstName(firstName: string): Promise<void | Locator> {
+    if (firstName === "") {
+      return this.page.getByText("First Name is required");
+    } else {
+      await this.firstName.fill(firstName);
+    }
   }
 
-  async fillLastName(lastName: string) {
-    await this.lastName.fill(lastName);
+  async fillLastName(lastName?: string) {
+    await this.lastName.fill(lastName ?? "");
   }
 
-  async fillEmail(email: string) {
-    await this.email.fill(email);
+  async fillEmail(email: string): Promise<void | Locator> {
+    if (!email) {
+      return this.page.getByText("Email is required");
+    } else {
+      await this.email.fill(email);
+    }
   }
 
-  async fillPhone(phone: string) {
-    await this.phone.fill(phone);
+  async fillPhone(phone: string): Promise<void | Locator> {
+    if (!phone) {
+      return this.page.getByText("Phone Number is required");
+    } else {
+      await this.phone.fill(phone);
+    }
   }
 
   async selectOccupation(occupationText: string) {
@@ -58,12 +71,20 @@ export default class RegisterPage {
     }
   }
 
-  async fillPassword(password: string) {
-    await this.password.fill(password);
+  async fillPassword(password: string): Promise<void | Locator> {
+    if (!password) {
+      return this.page.getByText("*Password is required", { exact: true });
+    } else {
+      await this.password.fill(password);
+    }
   }
 
-  async fillConfirmPassword(password: string) {
-    await this.confirmPassword.fill(password);
+  async fillConfirmPassword(password: string): Promise<void | Locator> {
+    if (!password) {
+      return this.page.getByText("Confirm Password is required", { exact: true });
+    } else {
+      await this.confirmPassword.fill(password);
+    }
   }
 
   async checkAgeCheckbox() {
@@ -78,34 +99,32 @@ export default class RegisterPage {
     await this.page.goto("/register");
   }
 
-  async registerByRequest(
-    firstName: string,
-    lastName: string,
-    userEmail: string,
-    userRole: string,
-    occupation: string,
-    gender: string,
-    userMobile: string,
-    userPassword: string,
-    confirmPassword: string,
-    required: boolean
-  ) {
+  async registerByRequest(userRegister: userRegister) {
     await this.page.request.post("/register", {
       data: {
-        firstName,
-        lastName,
-        userEmail,
-        userRole,
-        occupation,
-        gender,
-        userMobile,
-        userPassword,
-        confirmPassword,
-        required,
+        ...userRegister,
       },
       headers: {
         "Content-Type": "application/json",
       },
     });
+  }
+  async registerNewClientMandatoryFields(
+    userRegister: Pick<
+      userRegister,
+      "firstName" | "userEmail" | "userMobile" | "userPassword" | "confirmPassword"
+    >
+  ): Promise<Array<Locator>> {
+    await this.clickRegister();
+
+    const requiredFields = await Promise.all([
+      this.fillFirstName(userRegister.firstName),
+      this.fillEmail(userRegister.userEmail),
+      this.fillPhone(userRegister.userMobile),
+      this.fillPassword(userRegister.userPassword),
+      this.fillConfirmPassword(userRegister.confirmPassword),
+    ]);
+
+    return requiredFields as Locator[];
   }
 }
