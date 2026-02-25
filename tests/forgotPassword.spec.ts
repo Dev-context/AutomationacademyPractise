@@ -34,4 +34,10 @@ test.describe("Forgot Password Suite", () => {
     ).toBeVisible();
     expect(page.url()).toMatch(/.*password-new.*/g);
   });
+
+  test("CT003 User enter with invalid E-mail", async ({ page }) => {
+    await forgotPassword.resetPassword("test.com", ENV.USERPASSWORD, ENV.USERPASSWORD);
+    await expect(page.getByText("Enter Valid Email")).toBeVisible();
+    expect(page.url()).toMatch(/.*password-new.*/g);
+  });
 });

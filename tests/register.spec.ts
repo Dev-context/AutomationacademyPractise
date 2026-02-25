@@ -53,4 +53,19 @@ test.describe("Register Suite", () => {
       /User already exisits with this Email Id!/i
     );
   });
+
+  test("@CT003 Register without fill the mandatory fields", async () => {
+    const emptyFields = await registerPage.registerNewClientMandatoryFields({
+      firstName: "",
+      userEmail: "",
+      userMobile: "",
+      userPassword: "",
+      confirmPassword: "",
+    });
+
+    emptyFields.map(async (elements) => {
+      await expect(elements).toBeVisible();
+      await expect(elements).toContainText("is required");
+    });
+  });
 });
