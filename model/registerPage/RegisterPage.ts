@@ -87,8 +87,15 @@ export default class RegisterPage {
     }
   }
 
-  async checkAgeCheckbox() {
-    await this.ageCheckbox.check();
+  async checkAgeCheckbox(isCheck: boolean): Promise<void | Locator> {
+    if (isCheck) {
+      await this.ageCheckbox.check();
+    } else {
+      return this.page.getByText("*Please check above checkbox", { exact: true });
+    }
+  }
+  async ischecked() {
+    return await this.ageCheckbox.isChecked();
   }
 
   async clickRegister() {
@@ -109,7 +116,7 @@ export default class RegisterPage {
       },
     });
   }
-  async registerNewClientMandatoryFields(userRegister: userRegister): Promise<Array<Locator>> {
+  async factoryUserMandatoryFields(userRegister: userRegister): Promise<Array<Locator>> {
     await this.clickRegister();
 
     const requiredFields = await Promise.all([
@@ -118,8 +125,9 @@ export default class RegisterPage {
       this.fillPhone(userRegister.userMobile),
       this.fillPassword(userRegister.userPassword),
       this.fillConfirmPassword(userRegister.confirmPassword),
+      this.checkAgeCheckbox(userRegister.required),
     ]);
 
-    return requiredFields as Locator[];
+    return requiredFields.filter((item): item is Locator => item !== undefined);
   }
 }

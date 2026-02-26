@@ -23,10 +23,11 @@ test.describe("Register Suite", () => {
     await registerPage.selectGender("Male");
     await registerPage.fillPassword("Password123!");
     await registerPage.fillConfirmPassword("Password123!");
-    await registerPage.checkAgeCheckbox();
+    await registerPage.checkAgeCheckbox(true);
     await registerPage.clickRegister();
 
     await expect(page.locator("#toast-container")).toBeVisible();
+    expect(await registerPage.ischecked()).toBeTruthy();
   });
 
   test("@CT002 Use already existing email", async ({ page }) => {
@@ -38,7 +39,7 @@ test.describe("Register Suite", () => {
     await registerPage.selectGender("Male");
     await registerPage.fillPassword("Password123!");
     await registerPage.fillConfirmPassword("Password123!");
-    await registerPage.checkAgeCheckbox();
+    await registerPage.checkAgeCheckbox(true);
     const responsePromise = page.waitForResponse(
       (response) =>
         response.url().includes("/api/ecom/auth/register") && response.request().method() === "POST"
@@ -52,21 +53,23 @@ test.describe("Register Suite", () => {
     await expect(page.locator(".toast-message")).toHaveText(
       /User already exisits with this Email Id!/i
     );
+    expect(await registerPage.ischecked()).toBeTruthy();
   });
 
   test("@CT003 Register without fill the mandatory fields", async () => {
-    const emptyFields = await registerPage.registerNewClientMandatoryFields({
+    const emptyFields = await registerPage.factoryUserMandatoryFields({
       firstName: "",
       userEmail: "",
       userMobile: "",
       userPassword: "",
       confirmPassword: "",
-      required: true,
+      required: false,
     });
 
-    emptyFields.map(async (elements) => {
-      await expect(elements).toBeVisible();
-      await expect(elements).toContainText("is required");
-    });
+    for (const element of emptyFields) {
+      await expect(element).toBeVisible();
+      await expect(element).toContainText(/required|checkbox/gi);
+    }
+    expect(await registerPage.ischecked()).toBeFalsy();
   });
 });
