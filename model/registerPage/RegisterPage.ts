@@ -109,12 +109,7 @@ export default class RegisterPage {
       },
     });
   }
-  async registerNewClientMandatoryFields(
-    userRegister: Pick<
-      userRegister,
-      "firstName" | "userEmail" | "userMobile" | "userPassword" | "confirmPassword"
-    >
-  ): Promise<Array<Locator>> {
+  async registerNewClientMandatoryFields(userRegister: userRegister): Promise<Array<Locator>> {
     await this.clickRegister();
 
     const requiredFields = await Promise.all([

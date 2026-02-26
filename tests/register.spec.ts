@@ -61,6 +61,7 @@ test.describe("Register Suite", () => {
       userMobile: "",
       userPassword: "",
       confirmPassword: "",
+      required: true,
     });
 
     emptyFields.map(async (elements) => {

@@ -7,5 +7,5 @@ export interface userRegister {
   userMobile: string;
   userPassword: string;
   confirmPassword: string;
-  required?: boolean;
+  required: boolean;
 }
