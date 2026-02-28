@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { test as base } from "@playwright/test";
-import { Logger } from "../../../config/Logger";
+import { Logger } from "../../config/Logger";
 
 export const testeBase = base.extend<{ log: Logger }>({
   log: [
