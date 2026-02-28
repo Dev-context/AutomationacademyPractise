@@ -5,7 +5,7 @@ import * as os from "node:os";
 dotenv.config({ quiet: true });
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./src/tests",
   outputDir: "test-results",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

@@ -1,8 +1,0 @@
-{
-  "emailId": "#userEmail",
-  "passwordId": "#userPassword",
-  "loginSubmit": "#login",
-  "forgotPasswordLink": ".forgot-password-link",
-  "registerLink": "a[routerlink='/auth/register']",
-  "registerButton": "a.text-reset"
-}

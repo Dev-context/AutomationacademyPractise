@@ -1,0 +1,11 @@
+{
+  "viewButton": "button:has-text('View')",
+  "addToCardButton": "button:has-text('Add To Cart')",
+  "productList": "div.card",
+  "productName": "h5 b",
+  "productPrice": "div.text-muted",
+  "loading": ".ngx-spinner-overlay",
+  "searchFilterInputDesktop": "#sidebar input[name='search']",
+  "minPriceRangeInputDesktop": "#sidebar input[name='minPrice']",
+  "maxPriceRangeInputDesktop": "#sidebar input[name='maxPrice']"
+}
