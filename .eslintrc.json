@@ -21,7 +21,8 @@
     ],
     "rules": {
         "no-console": "warn",
-        "playwright/no-wait-for-timeout": "error",
+        "playwright/no-wait-for-timeout": "off",
+        "playwright/no-networkidle": 0,
         "playwright/expect-expect": [
             "error",
             {

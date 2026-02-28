@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import LoginPage from "../model/login/LoginPage";
 import ForgotPasswordPage from "../model/forgotPassword/ForgotPasswordPage";
-import { ENV } from "../config/env";
+import { ENV } from "../../config/env";
 
 let loginPage: LoginPage;
 let forgotPassword: ForgotPasswordPage;
