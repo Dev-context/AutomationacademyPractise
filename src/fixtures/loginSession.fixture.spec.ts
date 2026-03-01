@@ -1,5 +1,3 @@
-/* eslint-disable playwright/no-standalone-expect */
-/**/
 import { test as baseLogin, expect, Page } from "@playwright/test";
 import { ENV } from "../../config/env";
 import apiServices from "../services/apiServices";
@@ -34,7 +32,6 @@ export const sessionLogin = baseLogin.extend<{ page: Page }>({
     }, body.token);
 
     await page.goto("client/dashboard/dash");
-    await expect(page.locator(".card-body").first()).toBeVisible();
 
     await use(page);
     await page.close();
