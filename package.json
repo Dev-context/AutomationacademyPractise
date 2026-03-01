@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx playwright test && allure-generate",
     "test:ui": "npx playwright test --ui --ui-host 0.0.0.0 --ui-port 8080",
+    "chrome": "npx playwright test --project chromium --headed",
     "show:report": "npx playwright show-report",
     "allure-generate": "allure generate --clean && allure serve",
     "lint": "eslint . --ext .ts",

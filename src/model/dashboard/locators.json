@@ -4,8 +4,8 @@
   "productList": "div.card",
   "productName": "h5 b",
   "productPrice": "div.text-muted",
-  "loading": ".ngx-spinner-overlay",
   "searchFilterInputDesktop": "#sidebar input[name='search']",
   "minPriceRangeInputDesktop": "#sidebar input[name='minPrice']",
-  "maxPriceRangeInputDesktop": "#sidebar input[name='maxPrice']"
+  "maxPriceRangeInputDesktop": "#sidebar input[name='maxPrice']",
+  "cartLabel": "button:has-text('Cart') label"
 }
