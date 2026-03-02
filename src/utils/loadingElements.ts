@@ -11,12 +11,7 @@ export async function loadingDesapear(page: Page) {
       state: "hidden",
       timeout: tresMinutos,
     });
-
-    console.log("Sucesso: O loading desapareceu.");
   } catch (error) {
-    // Se estourar os 3 minutos, você decide o que fazer:
-    console.error("Aviso: O loading ainda estava visível após 3 minutos.");
-    // Opcional: tirar um print para depurar
     await page.screenshot({ path: "timeout-loading.png" });
   }
 }
