@@ -1,4 +1,4 @@
-import { testeBase as test } from "../fixtures/base.fixture.spec.ts";
+import { test } from "@playwright/test";
 import { ENV } from "../../config/env";
 import LoginPage from "../model/login/LoginPage";
 

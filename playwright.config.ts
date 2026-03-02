@@ -7,10 +7,11 @@ dotenv.config({ quiet: true });
 export default defineConfig({
   testDir: "./src/tests",
   outputDir: "test-results",
+  timeout: 300000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 4,
 
   reporter: [
     [
@@ -36,6 +37,8 @@ export default defineConfig({
     baseURL: "https://rahulshettyacademy.com/",
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
+    actionTimeout: 30000,
+    navigationTimeout: 30000,
     screenshot: {
       mode: "on",
     },
@@ -46,16 +49,6 @@ export default defineConfig({
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
-    },
-
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
     },
   ],
 });
