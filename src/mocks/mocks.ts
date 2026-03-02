@@ -1,17 +1,11 @@
 import { Page } from "@playwright/test";
 
-export default async function mock(
-  page: Page,
-  baseURL: string,
-  Bodyfaker: { [key: string]: unknown }
-) {
+export default async function mock(page: Page, baseURL: string, Bodyfaker: unknown) {
   await page.route(baseURL, async (route) => {
     const response = await route.fetch();
     const json = await response.json();
 
-    if (Array.isArray(json)) {
-      json.push(Bodyfaker);
-    }
+    json.push(Bodyfaker);
 
     await route.fulfill({
       response,

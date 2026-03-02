@@ -32,9 +32,10 @@ export default class Dashboard {
   private async AddProduct(productName: string) {
     try {
       const containerProduct = this.productsList.filter({ hasText: productName });
+
       await expect(containerProduct).toBeVisible();
       await containerProduct.locator(locators.addToCardButton).click();
-
+      await loadingDesapear(this.page);
       return this.toastAlert;
     } catch (error) {
       throw new Error("Not possible add a Product" + error);
@@ -43,9 +44,7 @@ export default class Dashboard {
 
   async filterProducts(item?: string, priceMin?: string, priceMax?: string) {
     await this.fillFilters(item, priceMin, priceMax);
-
     await waitForResponse(this.page);
-
     await this.getFilteredProductList(item as string, Number(priceMin), Number(priceMax));
   }
 
@@ -53,15 +52,16 @@ export default class Dashboard {
     if (item) await this.searchFilter.fill(item);
     if (priceMin) await this.priceMin.fill(priceMin);
     if (priceMax) await this.priceMax.fill(priceMax);
-
     await this.page.keyboard.press("Enter");
+    this.productsList = this.page.locator(locators.productList);
   }
 
   private async getFilteredProductList(item: string, priceMax: number, priceMin: number) {
     const products = await this.productsList.all();
+    await this.productsList.last().waitFor({ state: "visible" });
 
     for (const product of products) {
-      const productName = await this.productName.textContent();
+      const productName = await product.locator(locators.productName).textContent();
       const priceText = await product.locator(locators.productPrice).textContent();
       const priceValue = Number(priceText?.replace(/[^0-9.]/g, ""));
 
@@ -70,7 +70,6 @@ export default class Dashboard {
       if (priceMax) expect(priceValue).toBeGreaterThanOrEqual(Number(priceMax));
     }
 
-    this.productsList = this.page.locator(locators.productList);
     return this.productsList;
   }
 
@@ -82,13 +81,10 @@ export default class Dashboard {
   }
 
   async factoryProducts(productName: string) {
-    this.cardGlobalQuantity += 1;
     const result = await Promise.all([
       this.AddProduct(productName),
       this.myCartQuantity(this.cardGlobalQuantity),
     ]);
-
-    await loadingDesapear(this.page);
 
     return result;
   }

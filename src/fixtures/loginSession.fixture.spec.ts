@@ -32,10 +32,9 @@ export const sessionLogin = baseLogin.extend<{ page: Page }>({
     }, body.token);
 
     await page.goto("client/dashboard/dash");
+    await page.waitForLoadState("networkidle");
 
     await use(page);
-    await page.close();
-    await context.close();
   },
 });
 

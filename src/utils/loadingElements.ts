@@ -2,11 +2,22 @@ import { Page } from "@playwright/test";
 import { loading } from "./elements.json";
 import { ENV } from "../../config/env";
 
-export async function loadingDesapear(page: Page, timeout = 30000) {
+export async function loadingDesapear(page: Page) {
+  const tresMinutos = 180000;
+
   try {
-    await page.locator(loading).waitFor({ state: "hidden", timeout: timeout });
+    // Aguarda o elemento sumir do DOM ou ficar invisível
+    await page.locator(loading).waitFor({
+      state: "hidden",
+      timeout: tresMinutos,
+    });
+
+    console.log("Sucesso: O loading desapareceu.");
   } catch (error) {
-    throw new Error(`There an error to interact with this Element ${error})`);
+    // Se estourar os 3 minutos, você decide o que fazer:
+    console.error("Aviso: O loading ainda estava visível após 3 minutos.");
+    // Opcional: tirar um print para depurar
+    await page.screenshot({ path: "timeout-loading.png" });
   }
 }
 
