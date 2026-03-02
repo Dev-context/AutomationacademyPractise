@@ -75,7 +75,7 @@ export default class Dashboard {
 
   private async myCartQuantity(cardQuantity: number) {
     const data = { count: cardQuantity, message: "Cart Data Found" };
-    await mock(this.page, ENV.API_ADDRESS.GET_ALL_PRODUCTS, data);
+    await mock(this.page, ENV.API_ADDRESS.GET_CART_COUNT, data);
 
     return this.cart;
   }
