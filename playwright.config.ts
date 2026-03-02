@@ -7,7 +7,6 @@ dotenv.config({ quiet: true });
 export default defineConfig({
   testDir: "./src/tests",
   outputDir: "test-results",
-  timeout: 300000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -48,7 +47,14 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
+      timeout: 200000,
       use: { ...devices["Desktop Chrome"] },
     },
+    {
+      name: "firefox",
+      timeout: 600000,
+      use: { ...devices["Desktop Firefox"] },
+    },
+    { name: "webkit", timeout: 900000, use: { ...devices["Desktop Safari"] } },
   ],
 });
