@@ -1,4 +1,4 @@
 {
   "GET_ALL_PRODUCTS": "/api/ecom/product/get-all-products",
-  "GET_CART_COUNT": "https://rahulshettyacademy.com/api/ecom/user/get-cart-count/**"
+  "GET_CART_COUNT": "/api/ecom/user/get-cart-count/**"
 }
