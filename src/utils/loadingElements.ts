@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { loading } from "./elements.json";
-import { ENV } from "../../config/env";
 
 export async function loadingDesapear(page: Page) {
   const tresMinutos = 180000;
@@ -16,10 +15,10 @@ export async function loadingDesapear(page: Page) {
   }
 }
 
-export async function waitForResponse(page: Page, timeout = 30000) {
+export async function waitForResponse(page: Page, url: string, timeout = 30000) {
   try {
     const response = await page.waitForResponse(
-      (resp) => resp.url().includes(ENV.API_ADDRESS.GET_ALL_PRODUCTS) && resp.status() !== 204,
+      (resp) => resp.url().includes(url) && resp.status() !== 204,
       { timeout: timeout }
     );
     const isSuccessFully = response.ok();
