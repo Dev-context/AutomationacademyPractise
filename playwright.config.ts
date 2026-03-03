@@ -55,6 +55,14 @@ export default defineConfig({
       timeout: 600000,
       use: { ...devices["Desktop Firefox"] },
     },
-    { name: "webkit", timeout: 900000, use: { ...devices["Desktop Safari"] } },
+    {
+      name: "webkit",
+      timeout: 900000,
+      use: {
+        ...devices["Desktop Safari"],
+        actionTimeout: 60000, // 1 minuto para cada clique/foco/blur
+        navigationTimeout: 120000, // 2 minutos para carregamento de página
+      },
+    },
   ],
 });

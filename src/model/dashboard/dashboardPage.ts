@@ -45,7 +45,6 @@ export default class Dashboard {
 
   async filterProducts(item?: string, priceMin?: string, priceMax?: string) {
     await this.fillFilters(item, priceMin, priceMax);
-    await waitForResponse(this.page, ENV.API_ADDRESS.GET_ALL_PRODUCTS);
     await this.getFilteredProductList(item as string, Number(priceMin), Number(priceMax));
   }
 
@@ -53,7 +52,8 @@ export default class Dashboard {
     if (item) await this.searchFilter.fill(item);
     if (priceMin) await this.priceMin.fill(priceMin);
     if (priceMax) await this.priceMax.fill(priceMax);
-    await this.page.keyboard.press("Enter");
+    await this.priceMax.blur();
+    await waitForResponse(this.page, ENV.API_ADDRESS.GET_ALL_PRODUCTS);
     this.productsList = this.page.locator(locators.productList);
   }
 
