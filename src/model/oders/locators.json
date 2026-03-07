@@ -1,0 +1,8 @@
+{
+  "tableRow": "tbody tr",
+  "viewButton": "button:has-text('View')",
+  "deleteButton": "button:has-text('Delete')",
+  "BackShopButton": "button:has-text('Go Back to Shop')",
+  "BackCartButton": "button:has-text('Go Back to Cart')",
+  "loading": ":has-text('Loading....')"
+}

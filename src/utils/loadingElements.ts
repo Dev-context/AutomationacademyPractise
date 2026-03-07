@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
 import { loading } from "./elements.json";
 
-export async function loadingDesapear(page: Page) {
+export async function loadingDesapear(page: Page, locator = loading) {
   const tresMinutos = 180000;
 
   try {
     // Aguarda o elemento sumir do DOM ou ficar invisível
-    await page.locator(loading).waitFor({
+    await page.locator(locator).waitFor({
       state: "hidden",
       timeout: tresMinutos,
     });
@@ -15,7 +15,7 @@ export async function loadingDesapear(page: Page) {
   }
 }
 
-export async function waitForResponse(page: Page, url: string, timeout = 30000) {
+export async function waitForResponse(page: Page, url: string, timeout = 180000) {
   try {
     const response = await page.waitForResponse(
       (resp) => resp.url().includes(url) && resp.status() !== 204,

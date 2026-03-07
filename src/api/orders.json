@@ -1,0 +1,58 @@
+{
+  "data": [
+    {
+      "_id": "69ac47a6415d779f9b6063f5",
+      "orderById": "6977494ec941646b7ab9a689",
+      "orderBy": "frassons.vinicius@gmail.com",
+      "productOrderedId": "Sat Mar 07",
+      "productName": "ADIDAS ORIGINAL",
+      "country": "India",
+      "productDescription": "Apple phone",
+      "productImage": "https://rahulshettyacademy.com/api/ecom/uploads/productImage_1767959265156.jpg",
+      "orderDate": null,
+      "orderPrice": "11500",
+      "__v": 0
+    },
+    {
+      "_id": "69ac461d415d779f9b60605e",
+      "orderById": "6977494ec941646b7ab9a689",
+      "orderBy": "frassons.vinicius@gmail.com",
+      "productOrderedId": "Sat Mar 07",
+      "productName": "ADIDAS ORIGINAL",
+      "country": "India",
+      "productDescription": "Apple phone",
+      "productImage": "https://rahulshettyacademy.com/api/ecom/uploads/productImage_1767959265156.jpg",
+      "orderDate": null,
+      "orderPrice": "11500",
+      "__v": 0
+    },
+    {
+      "_id": "69ac461d415d779f9b60605b",
+      "orderById": "6977494ec941646b7ab9a689",
+      "orderBy": "frassons.vinicius@gmail.com",
+      "productOrderedId": "Sat Mar 07",
+      "productName": "ZARA COAT 3",
+      "country": "India",
+      "productDescription": "Apple phone",
+      "productImage": "https://rahulshettyacademy.com/api/ecom/uploads/productImage_1767959232316.jpeg",
+      "orderDate": null,
+      "orderPrice": "11500",
+      "__v": 0
+    },
+    {
+      "_id": "69ac4587415d779f9b605edf",
+      "orderById": "6977494ec941646b7ab9a689",
+      "orderBy": "frassons.vinicius@gmail.com",
+      "productOrderedId": "Sat Mar 07",
+      "productName": "iphone 13 pro",
+      "country": "Iran (Islamic Republic of)",
+      "productDescription": "Apple phone",
+      "productImage": "https://rahulshettyacademy.com/api/ecom/uploads/productImage_1767959158182.jpg",
+      "orderDate": null,
+      "orderPrice": "55000",
+      "__v": 0
+    }
+  ],
+  "count": 4,
+  "message": "Orders fetched for customer Successfully"
+}

@@ -52,8 +52,10 @@ export default class Dashboard {
     if (item) await this.searchFilter.fill(item);
     if (priceMin) await this.priceMin.fill(priceMin);
     if (priceMax) await this.priceMax.fill(priceMax);
+    const resp = waitForResponse(this.page, ENV.API_RESOURCES.GET_ALL_PRODUCTS);
     await this.priceMax.blur();
-    await waitForResponse(this.page, ENV.API_ADDRESS.GET_ALL_PRODUCTS);
+
+    await resp;
     this.productsList = this.page.locator(locators.productList);
   }
 
@@ -76,7 +78,7 @@ export default class Dashboard {
 
   private async myCartQuantity(cardQuantity: number) {
     const data = { count: cardQuantity, message: "Cart Data Found" };
-    await mock(this.page, ENV.API_ADDRESS.GET_CART_COUNT, data);
+    await mock(this.page, ENV.API_RESOURCES.GET_CART_COUNT, data);
 
     return this.cart;
   }
