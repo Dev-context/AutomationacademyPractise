@@ -1,4 +1,8 @@
 {
   "GET_ALL_PRODUCTS": "/api/ecom/product/get-all-products",
-  "GET_CART_COUNT": "/api/ecom/user/get-cart-count/**"
+  "GET_CART_COUNT": "/api/ecom/user/get-cart-count/**",
+  "ORDERS_FOR_CUSTOMER": "/api/ecom/order/get-orders-for-customer/*",
+  "ORDERS_DETAILS": "/api/ecom/order/*",
+  "GET_ORDERS": "api/ecom/order/get-orders-for-customer/*",
+  "DELETE_0RDERS": "**/api/ecom/order/delete-order/**"
 }
